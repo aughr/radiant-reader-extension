@@ -168,7 +168,11 @@ module GroupedModel
     end
 
     def group_id_list=(ids)
-      self.groups = Group.find_these(ids.split(/,\s*/))
+      if ids.blank?
+        self.groups = []
+      else
+        self.groups = Group.find_these(ids.split(/,\s*/))
+      end
     end
   end
 end
